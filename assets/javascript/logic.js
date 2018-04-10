@@ -1,7 +1,7 @@
 var config = {
     apiKey: "AIzaSyAFgq_xulFc1kFATdxqaf0N2_dplAKXFr8",
     authDomain: "calendar-a434e.firebaseapp.com",
-    databaseURL: "https://calendar-a434e.firebaseio.comm",
+    databaseURL: "https://calendar-a434e.firebaseio.com",
     projectId: "calendar-a434e",
     storageBucket: "",
     messagingSenderId: "498235520581"
@@ -10,53 +10,72 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var calendarItem = {
-    event,
+    name,
     description,
     owner,
-    start,
-    end,
+    startD,
+    startT,
+    endD,
+    endT,
 };
 // Push employee record from form -> firebase; clear the form
 $(document).on('click','#pushNew',function() {
     event.preventDefault();
-    calendarItem.event = $('#name').val().trim();
-    calendarItem.description = $('#role').val().trim();
-    calendarItem.owner = $('#role').val().trim();
-    calendarItem.start = moment($('#start').val().trim(), "MM/DD/YYYY").format("X"); // date -> unix
-    calendarItem.end = moment($('#end').val().trim(), "MM/DD/YYYY").format("X"); // date -> unix
+    calendarItem.name = $('#name').val().trim();
+    calendarItem.description = $('#description').val().trim();
+    calendarItem.owner = $('#owner').val().trim();
+    calendarItem.startD = moment($('#startD').val().trim(), "MM/DD/YYYY").format("X"); // date -> unix
+    calendarItem.startT = moment($('#startT').val().trim(), "H:mm").format("X"); // time -> unix
+    
+    // calendarItem.concatDT = moment($('#startD' + '#startT').val().trim()).format("X");
+    // console.log(calendarItem.concatDT);
+
+    calendarItem.endD = moment($('#endD').val().trim(), "MM/DD/YYYY").format("X"); // date -> unix
+    calendarItem.endT = moment($('#endT').val().trim(), "H:mm").format("X"); // time -> unix
+
+    console.log("startD: " + calendarItem.startD);
+    console.log("startT: " + calendarItem.startT);
+    var testing = calendarItem.startT - calendarItem.startD;
+    console.log("testing: " + testing);
+
     database.ref().push(calendarItem);
     $("#name").val("");
-    $("#role").val("");
-    $("#start").val("");
-    $("#rate").val("");
+    $("#description").val("");
+    $("#owner").val("");
+    $("#startD").val("");
+    $("#startT").val("");
+    $("#endD").val("");
+    $("#endT").val("");
 });
-// Append employee to table when database receives new record 
-database.ref().on('child_added', function(snapshot) {  
-    var employee = snapshot.val();
-    console.log(employee);
-    employee.id = snapshot.key;
+// Append calendarItem to table when database receives new record 
+// database.ref().on('child_added', function(snapshot) {  
+//     var calendar = snapshot.val();
+//     console.log(calendar);
+//     calendarItem.id = snapshot.key;
 
-    var startDate = moment.unix(employee.start).format('M/D/YYYY'); //converts unix -> date
-    var totalMonths = moment().diff(moment.unix(employee.start), "months");
-    var totalPaid = employee.rate * totalMonths;
+//     var startDate = moment.unix(calendarItem.startDate).format('M/D/YYYY'); //converts unix -> date
+//     var startTime = moment.unix(calendarItem.startTime).format('h:mm a'); //converts unix -> time
+//     var endDate = moment.unix(calendarItem.endDate).format('M/D/YYYY'); //converts unix -> date
+//     var endTime = moment.unix(calendarItem.endTime).format('h:mm a'); //converts unix -> time
+//     var leadTime = moment().diff(moment.unix(calendarItem.startD), "days");
 
-    var tRow = $('<tr data-id='+employee.id+'><td>' + employee.name + '</td><td>' + employee.role + '</td><td>' + startDate + '</td><td>$' + employee.rate + ' /mo.</td><td>' + totalMonths+' months</td><td>' + '$'+totalPaid + '</td></tr>');
-    $('#tBody').append(tRow);
-});
-// Update table when employee record changes in firebase; remove outdated row; append updated row
-firebase.database().ref().on('child_changed', function(snapshot) {
-    employee = snapshot.val();
-    startDate = moment.unix(employee.start).format('M/D/YYYY'); //converts unix -> date
-    totalMonths = moment().diff(moment.unix(employee.start), "months");
-    totalPaid = employee.rate * totalMonths;
+//     var tRow = $('<tr data-id='+calendarItem.id+'><td>' + calendarItem.name + '</td><td>' + calendarItem.description + '</td><td>' + startDate + '</td><td>$' + employee.rate + ' /mo.</td><td>' + totalMonths+' months</td><td>' + '$'+totalPaid + '</td></tr>');
+//     $('#tBody').append(tRow);
+// });
+// // Update table when employee record changes in firebase; remove outdated row; append updated row
+// firebase.database().ref().on('child_changed', function(snapshot) {
+//     employee = snapshot.val();
+//     startDate = moment.unix(employee.start).format('M/D/YYYY'); //converts unix -> date
+//     totalMonths = moment().diff(moment.unix(employee.start), "months");
+//     totalPaid = employee.rate * totalMonths;
 
-    var toDelete = $('[data-id='+snapshot.key+']');
-    // var toDelete = $('<tr data-id='+snapshot.key+'>'); //this didn't work
-    toDelete.empty();
+//     var toDelete = $('[data-id='+snapshot.key+']');
+//     // var toDelete = $('<tr data-id='+snapshot.key+'>'); //this didn't work
+//     toDelete.empty();
 
-    tRow = $('<tr><td>' + employee.name + '</td><td>' + employee.role + '</td><td>' + startDate + '</td><td>$' + employee.rate + ' /mo.</td><<td>' + totalMonths+' months</td><td>' + '$'+totalPaid + '</td></tr>');
-    $('#tBody').append(tRow);
-});
+//     tRow = $('<tr><td>' + employee.name + '</td><td>' + employee.role + '</td><td>' + startDate + '</td><td>$' + employee.rate + ' /mo.</td><<td>' + totalMonths+' months</td><td>' + '$'+totalPaid + '</td></tr>');
+//     $('#tBody').append(tRow);
+// });
 
     // var empStart = moment.unix(employee.start).utc();
     // console.log(empStart); //returns moment object

@@ -35,8 +35,8 @@
     <div class='jumbotron container' id='form-container'>
         <form>
             <div class='form-group'>
-                <label for='name'>Title</label>
-                <input type="text" class='form-control' id='name' placeholder='First and Last'>
+                <label for='name'>Title/Subject</label>
+                <input type="text" class='form-control' id='name' placeholder=''>
             </div>
             <div class='form-group'>
                 <label for='description'>Description</label>
@@ -47,12 +47,20 @@
                 <input type="text" class='form-control' id='owner' placeholder=''>
             </div>
             <div class='form-group'>
-                <label for='start'>Start Date</label>
-                <input type='text' class='form-control' id='start' placeholder='M/D/YYYY' >
+                <label for='startD'>Start Date</label>
+                <input type='text' class='form-control' id='startD' placeholder='M/D/YYYY'>
             </div>
             <div class='form-group'>
-                <label for='rate'>Monthly Rate</label>
-                <input type='text' class='form-control' id='rate'>
+                <label for='startT'>Start Time</label>
+                <input type='text' class='form-control' id='startT' placeholder='h:mm'>
+            </div>
+            <div class='form-group'>
+                <label for='endD'>End Date</label>
+                <input type='text' class='form-control' id='endD' placeholder='M/D/YYYY'>
+            </div>
+            <div class='form-group'>
+                <label for='endT'>End Time</label>
+                <input type='text' class='form-control' id='endT' placeholder='h:mm'>
             </div>
             <button type='submit' class='btn btn-primary' id='pushNew'>Submit</button>
         </form>
