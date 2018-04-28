@@ -29,7 +29,7 @@ td  {
 }
 
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
     .container {
         width: 98vw;
         margin-left: 1vw;
@@ -56,7 +56,7 @@ td  {
         margin-left: 15vw;
         margin-right: 15vw;
     } 
-}
+} */
 
 
 
