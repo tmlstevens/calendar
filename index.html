@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js'></script>
+    <title>Calendar</title>
+</head>
+<body>
+    <div class="jumbotron container" id='j'>
+        <h1 class="display-4">Calendar</h1>
+        <hr class="my-4">
+    </div>
+    <div class='jumbotron container' id='calendar-items'>
+        <table class='table' id='eventTable'>
+            <thead>
+                <tr>
+                    <th scope='col'>Event</th>
+                    <th scope='col'>Description</th>
+                    <th scope='col'>Owner</th>
+                    <th scope='col'>Start</th>
+                    <th scope='col'>End</th>
+                </tr>
+            </thead>
+            <tbody id='tBody'>
+
+            </tbody>
+        </table>
+    </div>
+    <div class='jumbotron container' id='form-container'>
+        <form>
+            <div class='form-group'>
+                <label for='name'>Title/Subject</label>
+                <input type="text" class='form-control' id='name' placeholder=''>
+            </div>
+            <div class='form-group'>
+                <label for='description'>Description</label>
+                <input type="text" class='form-control' id='description' placeholder=''>
+            </div>
+            <div class='form-group'>
+                <label for='owner'>Owner</label>
+                <input type="text" class='form-control' id='owner' placeholder=''>
+            </div>
+            <div class='form-group'>
+                <label for='startD'>Start Date</label>
+                <input type='text' class='form-control' id='startD' placeholder='M/D/YYYY'>
+            </div>
+            <div class='form-group'>
+                <label for='startT'>Start Time</label>
+                <input type='text' class='form-control' id='startT' placeholder='h:mm'>
+            </div>
+            <div class='form-group'>
+                <label for='endD'>End Date</label>
+                <input type='text' class='form-control' id='endD' placeholder='M/D/YYYY'>
+            </div>
+            <div class='form-group'>
+                <label for='endT'>End Time</label>
+                <input type='text' class='form-control' id='endT' placeholder='h:mm'>
+            </div>
+            <button type='submit' class='btn btn-primary' id='pushNew'>Submit</button>
+        </form>
+    </div>
+
+    <script type='text/javascript' src='assets/javascript/logic.js'></script>
+    
+</body>
+</html>
