@@ -23,8 +23,10 @@
                     <th scope='col'>Event</th>
                     <th scope='col'>Description</th>
                     <th scope='col'>Owner</th>
+                    <th scope='col'>Date</th>
                     <th scope='col'>Start</th>
                     <th scope='col'>End</th>
+                    <th scope='col'>Days Away</th>
                 </tr>
             </thead>
             <tbody id='tBody'>
@@ -34,6 +36,7 @@
     </div>
     <div class='jumbotron container' id='form-container'>
         <form>
+        <button type='button' class='btn btn-primary' id='dummy'>Test</button>
             <div class='form-group'>
                 <label for='name'>Title/Subject</label>
                 <input type="text" class='form-control' id='name' placeholder=''>
@@ -47,20 +50,16 @@
                 <input type="text" class='form-control' id='owner' placeholder=''>
             </div>
             <div class='form-group'>
-                <label for='startD'>Start Date</label>
-                <input type='text' class='form-control' id='startD' placeholder='M/D/YYYY'>
+                    <label for='date'>Date</label>
+                    <input type='text' class='form-control' id='date' placeholder='M/D/YY'>
+                </div>
+            <div class='form-group'>
+                <label for='startTime'>Start Time</label>
+                <input type='text' class='form-control' id='startTime' placeholder='h:mm a'>
             </div>
             <div class='form-group'>
-                <label for='startT'>Start Time</label>
-                <input type='text' class='form-control' id='startT' placeholder='h:mm'>
-            </div>
-            <div class='form-group'>
-                <label for='endD'>End Date</label>
-                <input type='text' class='form-control' id='endD' placeholder='M/D/YYYY'>
-            </div>
-            <div class='form-group'>
-                <label for='endT'>End Time</label>
-                <input type='text' class='form-control' id='endT' placeholder='h:mm'>
+                <label for='endTime'>End Time</label>
+                <input type='text' class='form-control' id='endTime' placeholder='h:mm a'>
             </div>
             <button type='submit' class='btn btn-primary' id='pushNew'>Submit</button>
         </form>
